@@ -1,6 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Agendamiento Hospitalario</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-placeholder">
+                    <i class="fas fa-hospital-symbol"></i> HOSPITAL SALUD TOTAL
+                </div>
+            </div>
+
+            <div class="search-area">
+                <div class="search-input-wrapper">
+                   <i class="fas fa-search search-icon"></i>
+                   <input type="text" placeholder="Buscar paciente por cédula o nombre...">
+                </div>
+            </div>
+
+            <div class="nav-area">
+                <nav class="main-nav">
+                    <a href="#" class="active">Inicio</a>
+                    <a href="#">Agenda</a>
+                    <a href="#">Doctores</a>
+                    <a href="#">Pacientes</a>
+                </nav>
+                <div class="user-profile">
+                    <i class="fas fa-user-circle fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-container">
+            
+            <div class="hero-graphic">
+                <div class="graphic-placeholder">
+                    <i class="fas fa-calendar-check fa-10x"></i>
+                </div>
+                <div class="hero-action-left">
+                    <button class="btn btn-primary-light">
+                        <i class="fas fa-plus"></i> Nueva Cita
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <h1>Sistema Centralizado de Agendamiento de Citas Médicas</h1>
+                
+                <div class="hero-action-right">
+                    <button class="btn btn-secondary-white">
+                        Ver Agenda del Día
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="cards-section">
+        <div class="cards-container">
+            
+            <div class="action-card">
+                <div class="card-icon">
+                    <i class="fas fa-user-plus fa-3x"></i>
+                </div>
+                <h2>Registro de Pacientes</h2>
+                <p>Registra los datos de un paciente nuevo en el sistema antes de agendar su primera cita.</p>
+            </div>
+
+            <div class="action-card">
+                <div class="card-icon">
+                    <i class="fas fa-user-md fa-3x"></i>
+                </div>
+                <h2>Gestión de Especialistas</h2>
+                <p>Administra los horarios, turnos y disponibilidad de los doctores por especialidad.</p>
+            </div>
+
+            <div class="action-card">
+                <div class="card-icon">
+                    <i class="fas fa-clipboard-list fa-3x"></i>
+                </div>
+                <h2>Historial y Reportes</h2>
+                <p>Consulta el historial de citas de pacientes y genera reportes de ocupación diaria.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Agendamiento Hospitalario.</p>
+    </footer>
+
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>F7. Mantenimiento</title>
