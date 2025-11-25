@@ -5,35 +5,253 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Agendamiento Hospitalario</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </head>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .main-header {
+            background-color: #ffffff;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1a3b8e;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .search-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input-wrapper {
+            background-color: #f0f2f5;
+            border-radius: 20px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-input-wrapper input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            margin-left: 10px;
+            color: #555;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            color: #555;
+            font-size: 0.95rem;
+            margin-right: 20px;
+        }
+
+        .main-nav a:hover {
+            color: #2c62f6;
+        }
+
+        .user-profile i {
+            color: #2c62f6;
+            cursor: pointer;
+        }
+
+        .hero-section {
+            background-color: #2c62f6;
+            color: white;
+            padding: 60px 5% 100px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 450px;
+        }
+
+        .hero-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .hero-graphic {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .graphic-placeholder {
+            font-size: 8rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: right;
+            padding-left: 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: #1a3b8e;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #2c62f6;
+        }
+
+        .cards-section {
+            padding: 0 5%;
+            margin-top: -50px;
+            margin-bottom: 50px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .card-icon {
+            margin-bottom: 20px;
+            color: #2c62f6;
+        }
+        
+        .card-icon.medical {
+            color: #1a3b8e; 
+        }
+
+        .action-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .action-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content {
+                text-align: center;
+                padding-left: 0;
+                margin-top: 30px;
+            }
+            .main-nav {
+                display: none;
+            }
+            .cards-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
 <body>
 
     <header class="main-header">
-        <div class="header-container">
-            <div class="logo-area">
-                <div class="logo-placeholder">
-                    <i class="fas fa-hospital-symbol"></i> HOSPITAL SALUD TOTAL
-                </div>
-            </div>
+        <div class="logo-area">
+            <i class="fas fa-heartbeat fa-lg"></i>
+            <span>HOSPITAL SANTA CLARA</span>
+        </div>
 
-            <div class="search-area">
-                <div class="search-input-wrapper">
-                   <i class="fas fa-search search-icon"></i>
-                   <input type="text" placeholder="Buscar paciente por cédula o nombre...">
-                </div>
+        <div class="search-area">
+            <div class="search-input-wrapper">
+               <i class="fas fa-search"></i>
+               <input type="text" placeholder="Buscar paciente, especialidad...">
             </div>
+        </div>
 
-            <div class="nav-area">
-                <nav class="main-nav">
-                    <a href="#" class="active">Inicio</a>
-                    <a href="#">Agenda</a>
-                    <a href="#">Doctores</a>
-                    <a href="#">Pacientes</a>
-                </nav>
-                <div class="user-profile">
-                    <i class="fas fa-user-circle fa-2x"></i>
-                </div>
-            </div>
+        <nav class="main-nav">
+            <a href="#">Inicio</a>
+            <a href="#">Agenda</a>
+            <a href="#">Doctores</a>
+            <a href="#">Reportes</a>
+        </nav>
+
+        <div class="user-profile">
+            <i class="fas fa-user-circle fa-2x"></i>
         </div>
     </header>
 
@@ -42,24 +260,22 @@
             
             <div class="hero-graphic">
                 <div class="graphic-placeholder">
-                    <i class="fas fa-calendar-check fa-10x"></i>
+                    <i class="fas fa-calendar-plus"></i>
                 </div>
-                <div class="hero-action-left">
-                    <button class="btn btn-primary-light">
-                        <i class="fas fa-plus"></i> Nueva Cita
+                <button class="btn btn-primary">
+                    Agendar Cita Nueva
+                </button>
+            </div>
+
+            <div class="hero-content">
+                <h1>Sistema de Gestión y<br>Agendamiento de Citas Médicas</h1>
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-secondary">
+                        Ver Calendario General
                     </button>
                 </div>
             </div>
 
-            <div class="hero-content">
-                <h1>Sistema Centralizado de Agendamiento de Citas Médicas</h1>
-                
-                <div class="hero-action-right">
-                    <button class="btn btn-secondary-white">
-                        Ver Agenda del Día
-                    </button>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -68,52 +284,30 @@
             
             <div class="action-card">
                 <div class="card-icon">
-                    <i class="fas fa-user-plus fa-3x"></i>
+                    <i class="fas fa-user-injured fa-3x"></i>
                 </div>
                 <h2>Registro de Pacientes</h2>
-                <p>Registra los datos de un paciente nuevo en el sistema antes de agendar su primera cita.</p>
+                <p>Ingresa nuevos pacientes a la base de datos para poder asignarles citas e historial médico.</p>
             </div>
 
             <div class="action-card">
-                <div class="card-icon">
+                <div class="card-icon medical">
                     <i class="fas fa-user-md fa-3x"></i>
                 </div>
-                <h2>Gestión de Especialistas</h2>
-                <p>Administra los horarios, turnos y disponibilidad de los doctores por especialidad.</p>
+                <h2>Gestión de Médicos</h2>
+                <p>Administra los perfiles de los especialistas, sus horarios de atención y consultorios asignados.</p>
             </div>
 
             <div class="action-card">
                 <div class="card-icon">
-                    <i class="fas fa-clipboard-list fa-3x"></i>
+                    <i class="fas fa-users-cog fa-3x"></i>
                 </div>
-                <h2>Historial y Reportes</h2>
-                <p>Consulta el historial de citas de pacientes y genera reportes de ocupación diaria.</p>
+                <h2>Gestión de Usuarios</h2>
+                <p>Controla los accesos del personal administrativo, enfermería y recepción dentro de la plataforma.</p>
             </div>
 
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Sistema de Agendamiento Hospitalario.</p>
-    </footer>
-
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>F7. Mantenimiento</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container"><span class="navbar-brand">Fase 7. Mantenimiento</span></div>
-  </nav>
-  <main class="container py-5">
-    <h1 class="display-5">¡Versión 1, CI desde Git y CD desde Netlify actualizado!</h1>
-    <h2 class="display-5">Cambio Versión V 2.0 desde la rama develop - Entorno DEVELOP </h1>
-    <p class="lead">
-    La Fase 7: Incluye corrección de errores detectados en producción, mejoras continuas, actualizaciones y adaptaciones a nuevos entornos o necesidades.
-    </p>
-    <button class="btn btn-danger">Botón (develop) V 2.0</button>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
